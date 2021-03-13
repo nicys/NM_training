@@ -1,11 +1,12 @@
 package ru.netology
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import ru.netology.Post
-import ru.netology.R
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.observe
+//import androidx.lifecycle.observe
 import ru.netology.databinding.ActivityMainBinding
-import kotlin.math.round
+import ru.netology.viewmodel.PostViewModel
 
 class MainActivity : AppCompatActivity() {
     var counterShares = 0
@@ -15,29 +16,22 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        with(binding) {
-            author.text = post.author
-            published.text = post.published
-            content.text = post.content
-            if (post.likeByMe) {
-                like?.setImageResource(R.drawable.ic_no_liked_24)
-            }
-            like?.setOnClickListener {
-                post.likeByMe = !post.likeByMe
+        val viewModel: PostViewModel by viewModels()
+        viewModel.data.observe(this) { post ->
+            with(binding) {
+                author.text = post.author
+                published.text = post.published
+                content.text = post.content
                 like.setImageResource(
                     if (post.likeByMe) R.drawable.ic_liked_24 else R.drawable.ic_no_liked_24
                 )
-                likes.setText(
-                    if (post.likeByMe) "1" else "0"
-                )
-            }
-            share?.setOnClickListener {
-                shares.setText(totalizerSmartFeed(++counterShares))
-
             }
         }
+        binding.like.setOnClickListener {
+            viewModel.like()
+        }
     }
+}
 
     fun counterOverThousand(feed: Int): Int {
         return when(feed) {
@@ -53,4 +47,47 @@ class MainActivity : AppCompatActivity() {
             else -> "${ (counterOverThousand(feed).toDouble() / 10) }M"
         }
     }
-}
+
+
+
+
+
+
+//        val viewModel: PostViewModel by viewModels()
+//        viewModel.data.observe(this, { post ->
+//            with(binding) {
+//                author.text = post.author
+//                published.text = post.published
+//                content.text = post.content
+//                like.setImageResource(
+//                    if (post.likeByMe) R.drawable.ic_liked_24 else R.drawable.ic_no_liked_24
+//                )
+//            }
+//        })
+//        binding.like.setOnClickListener {
+//            viewModel.like()
+//        }
+//    }
+
+
+//        with(binding) {
+//            author.text = post.author
+//            published.text = post.published
+//            content.text = post.content
+//            if (post.likeByMe) {
+//                like?.setImageResource(R.drawable.ic_no_liked_24)
+//            }
+//            like?.setOnClickListener {
+//                post.likeByMe = !post.likeByMe
+//                like.setImageResource(
+//                    if (post.likeByMe) R.drawable.ic_liked_24 else R.drawable.ic_no_liked_24
+//                )
+//                likes.setText(
+//                    if (post.likeByMe) "1" else "0"
+//                )
+//            }
+//            share?.setOnClickListener {
+//                shares.setText(totalizerSmartFeed(++counterShares))
+//
+//            }
+//        }
