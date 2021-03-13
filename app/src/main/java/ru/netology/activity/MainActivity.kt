@@ -1,7 +1,9 @@
-package ru.netology
+package ru.netology.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import ru.netology.Post
+import ru.netology.R
 import ru.netology.databinding.ActivityMainBinding
 import kotlin.math.round
 
