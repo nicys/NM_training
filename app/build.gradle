@@ -17,6 +17,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // Для библиотеки ViewBinding
     buildFeatures {
         viewBinding = true
     }

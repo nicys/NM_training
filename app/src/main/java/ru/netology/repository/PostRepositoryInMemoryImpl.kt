@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import ru.netology.Post
 
 class PostRepositoryInMemoryImpl : PostRepository {
+    private var sharesCnt = 0
     private var post = Post(
         id = 1,
         author = "Нетология. Университет интернет-профессий будущего",
@@ -15,14 +16,36 @@ class PostRepositoryInMemoryImpl : PostRepository {
                 "Но самое важно остается с нами: мы верим, что в каждом уже есть сила, которая " +
                 "заставляет хотеть больше, целиться выше, бежать быстрее. Наша миссия - помочь встать" +
                 " на путь роста и начать цепочку перемен → http://netolo.gy//fyb",
-        likeByMe = false
+        likeByMe = false,
+        shares = "0"
     )
-    private val data = MutableLiveData<Post>()
+    private val data = MutableLiveData(post)
 
     override fun get(): LiveData<Post> = data
 
     override fun like() {
         post = post.copy(likeByMe = !post.likeByMe)
         data.value = post
+    }
+
+    override fun share() {
+        ++sharesCnt
+        post = post.copy(shares = totalizerSmartFeed(sharesCnt))
+        data.value = post
+    }
+}
+
+fun counterOverThousand(feed: Int): Int {
+    return when(feed) {
+        in 1_000..999_999 -> feed/100
+        else -> feed/100_000
+    }
+}
+
+fun totalizerSmartFeed(feed: Int): String {
+    return when(feed) {
+        in 0..999 -> "$feed"
+        in 1_000..999_999 -> "${ (counterOverThousand(feed).toDouble() / 10) }K"
+        else -> "${ (counterOverThousand(feed).toDouble() / 10) }M"
     }
 }
