@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import ru.netology.Post
 
 class PostRepositoryInMemoryImpl : PostRepository {
-    private var sharesCnt = 0
     private var posts = listOf(
             Post(
                     id = 9,
@@ -103,7 +102,7 @@ class PostRepositoryInMemoryImpl : PostRepository {
 
     override fun shareById(id: Long) {
         posts = posts.map {
-            if (it.id != id) it else it.copy(sharesCnt = it.sharesCnt + 1, shares = totalizerSmartFeed(sharesCnt))
+            if (it.id != id) it else it.copy(sharesCnt = it.sharesCnt + 1, shares = totalizerSmartFeed(it.sharesCnt + 1))
         }
         data.value = posts
     }
