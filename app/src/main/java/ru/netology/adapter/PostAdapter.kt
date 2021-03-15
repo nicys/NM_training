@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.card_post.*
 import ru.netology.Post
 import ru.netology.R
 import ru.netology.databinding.CardPostBinding
@@ -14,7 +13,8 @@ typealias OnLikeListener = (post: Post) -> Unit
 typealias OnShareListener = (post: Post) -> Unit
 
 class PostsAdapter(
-        private val onLikeListener: OnLikeListener, private val onShareListener: OnShareListener
+        private val onLikeListener: OnLikeListener,
+        private val onShareListener: OnShareListener
 ) : ListAdapter<Post, PostViewHolder>(PostDiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = CardPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -46,7 +46,7 @@ class PostViewHolder(
                 onLikeListener(post)
             }
             share.setOnClickListener {
-                onShareListener
+                onShareListener(post)
             }
         }
     }
