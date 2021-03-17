@@ -5,7 +5,8 @@
     <string name="liked">likes</string>
     <string name="send">send</string>
     <string name="viewed">viewed</string>
-    <string name="menu_edit">Edit</string>
-    <string name="menu_remove">Remove</string>
+    <string name="popup_menu_edit">Edit</string>
+    <string name="popup_menu_remove">Remove</string>
+    <string name="down_options_menu_create">Remove</string>
 
 </resources>
