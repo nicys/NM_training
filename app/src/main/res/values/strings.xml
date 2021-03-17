@@ -7,6 +7,6 @@
     <string name="viewed">viewed</string>
     <string name="popup_menu_edit">Edit</string>
     <string name="popup_menu_remove">Remove</string>
-    <string name="down_options_menu_create">Remove</string>
+    <string name="down_options_menu_create">Add new post text</string>
 
 </resources>
