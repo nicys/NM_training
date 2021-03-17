@@ -2,12 +2,14 @@ package ru.netology.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.Post
 import ru.netology.R
 import ru.netology.databinding.CardPostBinding
+import kotlin.coroutines.coroutineContext
 
 typealias OnLikeListener = (post: Post) -> Unit
 typealias OnShareListener = (post: Post) -> Unit
@@ -51,16 +53,28 @@ class PostViewHolder(
                     if (post.likeByMe) R.drawable.ic_liked_24 else R.drawable.ic_no_liked_24
             )
             likes.text = if (post.likeByMe) "1" else "0"
-            like.setOnClickListener{
+            like.setOnClickListener {
                 onLikeListener(post)
             }
             share.setOnClickListener {
                 onShareListener(post)
             }
+            menu.setOnClickListener {
+                PopupMenu(it.context, it).apply {
+                    inflate(R.menu.option_post)
+                    setOnMenuItemClickListener { item ->
+                        when (item.itemId) {
+                            R.id.remove -> {
+                                onRemoveListener(post)
+                                true
+                            }
+                            else -> false
+                        }
+                    }
+                }.show()
+            }
         }
     }
-
-
 }
 
 class PostDiffCallback : DiffUtil.ItemCallback<Post>() {
