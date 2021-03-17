@@ -5,6 +5,6 @@
     <string name="liked">likes</string>
     <string name="send">send</string>
     <string name="viewed">viewed</string>
-    <string name="menu_edit">Редактировать</string>
+    <string name="menu_edit">Изменить</string>
     <string name="menu_remove">Удалить</string>
 </resources>
