@@ -8,5 +8,6 @@
     <string name="popup_menu_edit">Edit</string>
     <string name="popup_menu_remove">Remove</string>
     <string name="down_options_menu_create">Add new post text</string>
+    <string name="save_button">save</string>
 
 </resources>
