@@ -5,5 +5,7 @@
     <string name="liked">likes</string>
     <string name="send">send</string>
     <string name="viewed">viewed</string>
-    <string name="line">__________________________________________________________</string>
+    <string name="menu_edit">Edit</string>
+    <string name="menu_remove">Remove</string>
+
 </resources>
