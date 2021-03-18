@@ -16,6 +16,7 @@ typealias OnShareListener = (post: Post) -> Unit
 typealias OnRemoveListener = (post: Post) -> Unit
 
 
+
 class PostsAdapter(
         private val onLikeListener: OnLikeListener,
         private val onShareListener: OnShareListener,
