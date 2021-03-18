@@ -10,5 +10,6 @@
     <string name="post_text">Add new post text</string>
     <string name="save_button">save</string>
     <string name="save">ok</string>
+    <string name="error_empty_content">Content can\'t be empty</string>
 
 </resources>
