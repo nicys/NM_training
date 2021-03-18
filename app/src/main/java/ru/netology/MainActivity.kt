@@ -1,10 +1,12 @@
 package ru.netology
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.adapter.PostsAdapter
 import ru.netology.databinding.ActivityMainBinding
+import ru.netology.util.AndroidUtils
 import ru.netology.viewmodel.PostViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -24,5 +26,25 @@ class MainActivity : AppCompatActivity() {
         viewModel.data.observe(this, { posts ->
             adapter.submitList(posts)
         })
+
+        binding.save.setOnClickListener {
+            with(binding.content) {
+                if (text.isNullOrBlank()) {
+                    Toast.makeText(
+                            this@MainActivity,
+                            context.getString(R.string.error_empty_content),
+                            Toast.LENGTH_SHORT
+                    ).show()
+                    return@setOnClickListener
+                }
+
+                viewModel.changeContent(text.toString())
+                viewModel.save()
+
+                setText("")
+                clearFocus()
+                AndroidUtils.hideKeyboard(this)
+            }
+        }
     }
 }
