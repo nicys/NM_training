@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         binding.save.setOnClickListener {
-            with(binding.content) {
+            with(binding.contentPost) {
                 if (text.isNullOrBlank()) {
                     Toast.makeText(
                             this@MainActivity,

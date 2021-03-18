@@ -23,11 +23,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="top"
-        app:constraint_referenced_ids="content,save"
+        app:constraint_referenced_ids="content_post,save"
         tools:layout_editor_absoluteY="683dp" />
 
     <EditText
-        android:id="@+id/content"
+        android:id="@+id/content_post"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -47,7 +47,7 @@
         android:background="@android:color/transparent"
         android:contentDescription="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/content"
+        app:layout_constraintStart_toEndOf="@id/content_post"
         app:layout_constraintBottom_toBottomOf="parent"
         app:srcCompat="@drawable/ic_save_48"
         />
