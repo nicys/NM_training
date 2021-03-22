@@ -69,5 +69,24 @@ class MainActivity : AppCompatActivity() {
                 AndroidUtils.hideKeyboard(this)
             }
         }
+
+        binding.cancel.setOnClickListener {
+            with(binding.contentPost) {
+                if (text.isNullOrBlank()) {
+                    Toast.makeText(
+                            this@MainActivity,
+                            context.getString(R.string.error_empty_content),
+                            Toast.LENGTH_SHORT
+                    ).show()
+                    return@setOnClickListener
+                }
+
+                viewModel.cancelChangeContent(text.toString())
+
+                setText("")
+                clearFocus()
+                AndroidUtils.hideKeyboard(this)
+            }
+        }
     }
 }
