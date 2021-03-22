@@ -41,10 +41,6 @@ class PostViewModel : ViewModel() {
         edited.value = edited.value?.copy(content = text)
     }
 
-    fun cancelChangeContent(content: String) {
-        edited.value = edited.value?.copy(content = content)
-    }
-
     fun likeById(id: Long) = repository.likeById(id)
     fun shareById(id: Long) = repository.shareById(id)
     fun removeById(id: Long) = repository.removeById(id)
