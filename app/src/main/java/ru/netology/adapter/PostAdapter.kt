@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.netology.Post
 import ru.netology.R
 import ru.netology.databinding.CardPostBinding
-import kotlin.coroutines.coroutineContext
 
 interface OnInteractionListener {
     fun onLike(post: Post) {}

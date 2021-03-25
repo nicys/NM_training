@@ -2,8 +2,6 @@ package ru.netology
 
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -76,12 +74,39 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.cancel.setOnClickListener {
-            viewModel.edited.observe(this, { post ->
-                with(binding.contentPost) {
-                    setText(post.content)
+        // 1-й вариант отмены редактирования
+//        binding.cancel.setOnClickListener {
+//            viewModel.edited.observe(this, { post ->
+//                with(binding.contentPost) {
+//                    setText(post.content)
+//                }
+//            })
+//        }
+
+        // 2-й вариант отмены редактирования
+//        binding.cancel.setOnClickListener {
+//            with(binding.contentPost) {
+//                setText("")
+//                clearFocus()
+//                AndroidUtils.hideKeyboard(this)
+//                binding.cancel.visibility = View.INVISIBLE
+//            }
+//        }
+
+        binding.contentPost.setOnClickListener {
+//            binding.contentPost.requestFocus()
+            binding.cancel.visibility = View.VISIBLE
+
+            with(binding.cancel) {
+                setOnClickListener {
+                    with(binding.contentPost) {
+                        setText("")
+                        clearFocus()
+                        AndroidUtils.hideKeyboard(this)
+                        binding.cancel.visibility = View.INVISIBLE
+                    }
                 }
-            })
+            }
         }
     }
 }
