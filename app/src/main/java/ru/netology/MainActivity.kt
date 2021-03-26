@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // 1-й вариант отмены редактирования
+        // 1-й вариант отмены редактирования/ возврат к текущему контенту
 //        binding.cancel.setOnClickListener {
 //            viewModel.edited.observe(this, { post ->
 //                with(binding.contentPost) {
@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
 //            })
 //        }
 
-        // 2-й вариант отмены редактирования
+        // 2-й вариант отмены редактирования/ отмена для существующего поста
 //        binding.cancel.setOnClickListener {
 //            with(binding.contentPost) {
 //                setText("")
@@ -93,20 +93,33 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 
-        binding.contentPost.setOnClickListener {
-//            binding.contentPost.requestFocus()
-            binding.cancel.visibility = View.VISIBLE
+//        binding.contentPost.setOnClickListener {
+////            binding.contentPost.requestFocus()
+//            binding.cancel.visibility = View.VISIBLE
+//
+//            with(binding.cancel) {
+//                setOnClickListener {
+//                    with(binding.contentPost) {
+//                        setText("")
+//                        clearFocus()
+//                        AndroidUtils.hideKeyboard(this)
+//                        binding.cancel.visibility = View.INVISIBLE
+//                    }
+//                }
+//            }
+//        }
+        binding.contentPost.setOnFocusChangeListener { _, hasFocus ->
+            binding.cancel.visibility = if (hasFocus) View.VISIBLE else View.INVISIBLE
+        }
 
-            with(binding.cancel) {
-                setOnClickListener {
-                    with(binding.contentPost) {
-                        setText("")
-                        clearFocus()
-                        AndroidUtils.hideKeyboard(this)
-                        binding.cancel.visibility = View.INVISIBLE
-                    }
-                }
+        binding.cancel.setOnClickListener {
+            with(binding.contentPost) {
+                setText("")
+                clearFocus()
+                AndroidUtils.hideKeyboard(this)
+
             }
         }
+        binding.cancel.visibility = View.INVISIBLE
     }
 }
