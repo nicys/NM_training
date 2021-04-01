@@ -108,7 +108,9 @@
         app:icon="@drawable/ic_like_selector"
         app:layout_constraintStart_toStartOf="@id/barrier_2"
         app:layout_constraintTop_toBottomOf="@+id/content"
-        tools:text="@sample/posts.json/data/likes" />
+        tools:text="@sample/posts.json/data/likes"
+        tools:textColor="@color/purple_700"
+        android:textColor="@color/red" />
 
     <!--    <TextView-->
 <!--        android:id="@+id/shares"-->
@@ -127,10 +129,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:contentDescription="@string/send"
+        android:textColor="@color/deepGreen"
         app:icon="@drawable/ic_share_selector"
         app:layout_constraintStart_toEndOf="@+id/like"
         app:layout_constraintTop_toBottomOf="@+id/content"
-        tools:text="@sample/posts.json/data/send" />
+        tools:text="@sample/posts.json/data/send"
+        tools:textColor="@color/purple_700" />
 
     <TextView
         android:id="@+id/views"
@@ -139,7 +143,8 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/content"
-        tools:text="@sample/posts.json/data/viewed" />
+        tools:text="@sample/posts.json/data/viewed"
+        tools:textColor="@color/purple_700" />
 
     <ImageView
         android:id="@+id/view"
