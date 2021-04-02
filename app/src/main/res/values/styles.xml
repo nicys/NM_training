@@ -21,8 +21,11 @@
         <item name="iconTint">@color/share_color_selector</item>
     </style>
 
-    <style name="Widget.AppTheme.MenuButton" parent="Widget.MaterialComponents.Button">
+    <style name="Widget.AppTheme.MenuButton" parent="Widget.MaterialComponents.TimePicker.ImageButton">
         <item name="iconTint">@color/menu_color_selector</item>
+
     </style>
+
+
 
 </resources>
